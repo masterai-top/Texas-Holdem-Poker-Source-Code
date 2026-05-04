@@ -50,8 +50,7 @@ Ready for development, customization, and deployment.
 ## 🎮 Demo | 演示 | 演示
 
 See real gameplay below 👇  
-查看游戏实际画面 👇  
-查看實際遊戲畫面 👇  
+
 
 
 <img width="1058" height="2204" alt="04" src="https://github.com/user-attachments/assets/7dc4fb13-7624-40af-8bc0-80d5ae2a750d" />
