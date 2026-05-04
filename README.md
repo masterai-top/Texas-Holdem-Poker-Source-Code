@@ -65,7 +65,11 @@ See real gameplay below 👇
 
 ![加入联盟](Screenshots/加入联盟.jpg)  
 **加入联盟界面 | Join Alliance**
+![好友局](Screenshots/好友局.jpg)  
+**好友局界面 | Friends Room**
 
+![打牌房间](Screenshots/打牌房间.jpg)  
+**打牌房间界面 | Gameplay Room**
 <img width="1058" height="2204" alt="04" src="https://github.com/user-attachments/assets/7dc4fb13-7624-40af-8bc0-80d5ae2a750d" />
 <img width="1058" height="2204" alt="03" src="https://github.com/user-attachments/assets/57e9984e-36c3-4d91-abe7-09b1420de6af" />
 <img width="1058" height="2204" alt="02" src="https://github.com/user-attachments/assets/0519cbf7-8856-4488-8838-374dc8019f5e" />
