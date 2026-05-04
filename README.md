@@ -8,8 +8,6 @@
 🔥 Club + Agent System  
 🔥 Real-Time Gameplay  
 
-👉 🚀 Demo Available  
-👉 📩 Contact for Full Version  
 
 ---
 
