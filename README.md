@@ -51,7 +51,20 @@ Ready for development, customization, and deployment.
 
 See real gameplay below 👇  
 
+![MTT赛事](Screenshots/MTT赛事.jpg)  
+**MTT赛事界面 | MTT Tournament**
 
+![个人中心](Screenshots/个人中心.jpg)  
+**个人中心界面 | Personal Center**
+
+![俱乐部币](Screenshots/俱乐部币.jpg)  
+**俱乐部币界面 | Club Currency**
+
+![创建俱乐部](Screenshots/创建俱乐部.jpg)  
+**创建俱乐部界面 | Create Club**
+
+![加入联盟](Screenshots/加入联盟.jpg)  
+**加入联盟界面 | Join Alliance**
 
 <img width="1058" height="2204" alt="04" src="https://github.com/user-attachments/assets/7dc4fb13-7624-40af-8bc0-80d5ae2a750d" />
 <img width="1058" height="2204" alt="03" src="https://github.com/user-attachments/assets/57e9984e-36c3-4d91-abe7-09b1420de6af" />
