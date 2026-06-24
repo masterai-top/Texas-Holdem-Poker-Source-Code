@@ -2,63 +2,41 @@
 #define _OUTER_FACTORY_IMP_H_
 
 #include <string>
+#include <map>
 #include "servant/Application.h"
-#include "util/tc_singleton.h"
 #include "globe.h"
-#include "RouterHelper.h"
-#include "RoomServant.h"
-#include "LoginServant.h"
-#include "HallServant.h"
-#include "ConfigServant.h"
-#include "PushServant.h"
-#include "JFGameCommProto.h"
-#include "XGameComm.pb.h"
-#include "CommonStruct.pb.h"
-#include "UserInfo.pb.h"
+#include "OuterFactory.h"
+#include "LogComm.h"
 
 //wbl
 #include <wbl/regex_util.h>
-#include <wbl/stream_util.h>
-#include "PushServant.h"
-#include "GlobalServant.h"
-#include "GameTcp.h"
 
-#include "RsaEncrypt.h"
+//配置服务
+#include "DBAgentServant.h"
+#include "OrderServant.h"
+#include "HallServant.h"
+#include "ActivityServant.h"
+#include "ConfigServant.h"
+#include "Log2DBServant.h"
 
 //
-using namespace std;
-using namespace tars;
-using namespace wbl;
-using namespace JFGame;
-using namespace JFGamecomm;
-using namespace hall;
-using namespace push;
-using namespace global;
-using namespace userinfo;
+using namespace dataproxy;
+using namespace dbagent;
 
-//连接配置
-typedef struct _TConnConfig
-{
-    int SessionTimeOut;       //会话超时时间
-    int ConnContinueInterval; //保持连接间隔
-    int KeepAliveInterval;   //keepalive,心跳检测时间间隔
-} TConnConfig;
+//时区
+#define ONE_DAY_TIME (24*60*60)
+#define ZONE_TIME_OFFSET (8*60*60)
 
-//时间间隔设置配置信息
-typedef struct _TTimeIntervalConfig
-{
-    int iUpdateRouteInterval;      //更新路由信息间隔时间
-    int iDoOtherInterval;          //频率低的业务
-    int iClearTimeOutConnInterval; //清除超时连接
-    int iCheckKeepAliveInterval;   //定时检测心跳间隔
-} TTimeIntervalConfig;
+//
+class OuterFactoryImp;
+typedef TC_AutoPtr<OuterFactoryImp> OuterFactoryImpPtr;
 
 /**
  * 外部工具接口对象工厂
  */
-class OuterFactoryImp
+class OuterFactoryImp : public OuterFactory
 {
-public:
+private:
     /**
      *
     */
@@ -69,200 +47,192 @@ public:
     */
     ~OuterFactoryImp();
 
-private:
     /**
      *
-    */
-    void createAllObject();
+     */
+    friend class OrderServantImp;
 
     /**
      *
-    */
-    void deleteAllObject();
+     */
+    friend class OrderServer;
 
 public:
-    //加载配置
+    //框架中用到的outer接口(不能修改):
+    const OuterProxyFactoryPtr &getProxyFactory() const
+    {
+        return _pProxyFactory;
+    }
+
+    tars::TC_Config &getConfig() const
+    {
+        return *_pFileConf;
+    }
+
+public:
+    //读取所有配置
     void load();
-    //加载房间配置
-    void loadRoomServerList();
-    //加载代理配置
+    //代理配置
     void readPrxConfig();
     //打印代理配置
     void printPrxConfig();
-    //加载身份校验开关
-    void readAuthFlag();
-    //打印身份校验开关
-    void printAuthFlag();
-    //获取身份校验开关
-    int getAuthFlag();
-    //目标处理对象
-    void readTransMitSvrIdObj();
-    //打印目标处理对象
-    void printTransMitSvrIdObj();
-    //加载RoomServer配置
-    void readRoomServerList();
-    //加载RoomServer配置
-    void printRoomServerList();
-    //获取RoomServer配置
-    int getRoomServerPrx(const string &id, string &prx);
-    //加载连接配置
-    void readConnConfig();
-    //打印连接配置
-    void printConnConfig();
-    //获取连接配置
-    const TConnConfig &getConnConfig();
-    //时间间隔设置配置信息
-    void readTimeIntervalConfig();
-    //打印时间间隔设置配置信息
-    void printTimeIntervalConfig();
-    //获取时间间隔设置配置信息
-    const TTimeIntervalConfig &getTimeIntervalConfig();
-    //测试账号配置信息
-    void readTestUidConfig();
-    //打印测试帐号信息
-    void printTestUidConfig();
+
+private:
     //
-    void readRsaOpenConfig();
+    void createAllObject();
     //
-    int getRsaOpen();
-
-    void readVersionConfig();
-
-    int getVersionConfig();
-
-    void readMessageCountConfig();
-
-    int getMessageCountLimit();
-public:
-    //获取白名单帐号标识
-    const vector<long> &getTestUidConfig();
-    //获取白名单开关
-    std::atomic<int> &getTestOpen();
-    //设置白名单开关
-    void setTestOpen(bool isOpen);
-    //检查是否白名单
-    bool isWhiteList(const long uid);
+    void deleteAllObject();
 
 public:
-    //异步调用RoomServer
-    void asyncRequest2Room(XGameComm::TPackage &t, const vector<MsgStruct> &vRm, const ConnStructPtr &cs);
-    //异步调用RoomServer
-    void asyncSend2Room(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用RoomServer, offline
-    void asyncSend2RoomServerOffline(ConnStructPtr cs, bool standup = false);
-    //异步调用LoginServer(身份校验)
-    void asyncCheckToken(const XGameComm::TPackage &t, const ConnStructPtr cs);
-    //异步调用LoginServer(帐号退出)
-    void asyncLogoutNotify(const long uid, const string &sRemoteIP);
-    //异步调用LoginServer,传递请求数据
-    void asyncRequest2LoginServer(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用UserInfoServer,传递请求数据
-    void asyncRequest2UserInfoServer(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用UserStateServer,传递请求数据
-    void asyncRequest2UserStateServer(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用ConfigServer,传递请求数据
-    void asyncRequest2ConfigServer(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用PushServer更新用户状态
-    void asyncRequest2PushUserState(const long iUin, const long iCid, const bool isOnline);
-    //异步调用HallServer(1-在线, 0-离线)
-    void asyncRequest2HallUserState(long iUin, int state);
-    //异步调用推送服务
-    void asyncRequest2PushServer(const XGameComm::TPackage &t, const ConnStructPtr &cs);
-    //异步调用PushServer在线用户状态
-    void asyncReportOnlineUsers(const std::map<long, long> &users);
-
-public:
-    //获取服务配置
-    const tars::TC_Config &getConfig() const;
-    // 获取服务代理
-    const XGame::GameTCPPrx getGameTCPPrx(int urlKey);
-    //LoginServer的对象名称
-    const login::LoginServantPrx getLoginServantPrx();
-    //ConfigServer的对象名称
+    //游戏配置服务代理
     const config::ConfigServantPrx getConfigServantPrx();
-    //HallServer的对象名称
-    const hall::HallServantPrx getHallServerPrx();
-    //GlobalServer的对象名称
-    const global::GlobalServantPrx getGlobalServantPrx();
-    //PushServer的对象名称
-    const push::PushServantPrx getPushServerPrx();
+    //金猪服务代理
+    const activity::ActivityServantPrx getActivityServantPrx(const long uid);
+    //数据库代理服务代理
+    const DBAgentServantPrx getDBAgentServantPrx(const long uid);
+    //数据库代理服务代理
+    const DBAgentServantPrx getDBAgentServantPrx(const string key);
+    //广场服务代理
+    const hall::HallServantPrx getHallServantPrx(const long uid);
+    //广场服务代理
+    const hall::HallServantPrx getHallServantPrx(const string key);
+    //日志入库服务代理
+    const DaqiGame::Log2DBServantPrx getLog2DBServantPrx(const long uid);
+    //验证URL
+    const string &getVerifyUrl(order::Eum_Channel_Type channelType, order::Eun_Order_Env env)
+    {
+        try
+        {
+            return this->_urls.at(channelType).at(env);
+        }
+        catch (const std::exception &)
+        {
+            ostringstream os;
+            os << __FILE__ << ":" << __LINE__ << ":getVerifyUrl() failed! channelType : " << channelType << ",env : " << env << endl;
+            throw logic_error(os.str());
+        }
+    }
+    //获取产品价格
+    string getProductPrice(int qrCode)
+    {
+        string value = I2S(qrCode);
+        for (const auto &item : mallConfigRaw)
+        {
+            if (item.at("qrCode") == value)
+            {
+                string price = item.at("payValue");
+                string originalPrice = price;
+
+                //
+                price = getProductPayValue(originalPrice);
+
+                ///
+                ROLLLOG_DEBUG << "originalPrice: " << originalPrice << ", price: " << price << endl;
+                return price;
+            }
+        }
+
+        for (const auto &item : activityConfigRaw)
+        {
+            if (item.at("level") == value)
+            {
+                string price = item.at("purchaseAmount");
+                string originalPrice = price;
+
+                //
+                price = getProductPayValue(originalPrice);
+
+                ///
+                ROLLLOG_DEBUG << "originalPrice: " << originalPrice << ", price: " << price << endl;
+                return price;
+            }
+        }
+        throw logic_error("cant not find good, qrcode : " + value);
+    }
+
+    //解析商品价格
+    string getProductPayValue(const string &price)
+    {
+        string retValue = "0";
+
+        vector<string> vecprice = split(price, ".");
+
+        // //
+        // ostringstream os;
+        // for(auto it : vecprice)
+        // {
+        //  os << it << " ";
+        // }
+        // ROLLLOG_DEBUG << os.str() << endl;
+
+        if(vecprice.size() == 1)
+        {
+            retValue = I2S(S2I(vecprice[0]) * 100);
+        }
+        else if(vecprice.size() == 2)
+        {
+            string subStr = vecprice[1].substr(0, 2);
+            retValue = I2S(S2I(vecprice[0]) * 100 + S2I(subStr));
+        }
+
+        //
+        return retValue;
+    }
+
+    void asyncLog2DB(const int64_t uid, const DaqiGame::TLog2DBReq &req);
 
 public:
+    //格式化时间
+    string GetTimeFormat();
+    //获得时间秒数
+    int GetTimeTick(const string &str);
+private:
     //拆分字符串成整形
-    int splitInt(string szSrc, vector<long> &vecInt);
+    int splitInt(string szSrc, vector<int> &vecInt);
     //拆分字符串
-    vector<string> split(const string &str, const string &pattern);
-
-    void reverse(string &str,int start,int end);
-
-    void rotateStrLeft(string &str, int offset);
-
-    void rotateStrRight(string &str, int offset);
-
-public:
-    //发送通知到客户端
-    int sendPushNotify(const ConnStructPtr ptr, const int iNotifyType, const bool bReturnLoginUI);
-
-    void sendResponse(const string &buff, const ConnStructPtr cs);
-
-    string decryptRequest(const string &buff, const ConnStructPtr cs);
+    vector<std::string> split(const string &str, const string &pattern);
 
 private:
-    //业务配置
-    tars::TC_Config *_pFileConf;
-    //RoomServer配置列表
-    map<string, string> mapRoomServerFromRemote;
-    //LoginServer的对象名称
-    string _sLoginServerObj;
-    //LoginServer的对象
-    login::LoginServantPrx _loginServerPrx;
-    //ConfigServer的对象名称
-    string _sConfigServerObj;
-    //ConfigServer的对象
-    config::ConfigServantPrx _configServerPrx;
-    //HallServer的对象名称
-    string _sHallServerObj;
-    //HallServer的对象
-    hall::HallServantPrx _hallServantPrx;
-    //GlobalServer的对象名称
-    string _sGlobalServerObj;
-    //GlobalServer的对象
-    global::GlobalServantPrx _globalServantPrx;
-    //PushServer的对象名称
-    string _sPushServantObj;
-    //PushServer的对象
-    push::PushServantPrx _pushServerPrx;
-
-private:
-    //连接配置
-    TConnConfig tConnConfig;
-    //时间间隔设置配置信息
-    TTimeIntervalConfig tTimeIntervalConfig;
-
-private:
-    //测试账号
-    std::vector<long> vecTestUid;
-    //测试开关
-    std::atomic<int> testOpen;
-    //身份校验开关
-    int authFlag;
-    //rsa 开关
-    int RsaOpen; 
-    //版本号
-    int iVersion;
-    //
-    int iMessageCountLimit;
-    //服务代理对象列表
-    std::map<int, string> _mapTransmitObjects;
-    //防止数据读写不一致
+    //读写锁，防止脏读
     wbl::ReadWriteLocker m_rwlock;
+
+private:
+    //框架用到的共享对象(不能修改):
+    tars::TC_Config *_pFileConf;
+    //
+    OuterProxyFactoryPtr _pProxyFactory;
+
+private:
+    //数据库代理服务
+    std::string _DBAgentServantObj;
+    DBAgentServantPrx _DBAgentServerPrx;
+
+    std::string _HallServantObj;
+    hall::HallServantPrx _HallServerPrx;
+
+    std::string _ActivityServantObj;
+    activity::ActivityServantPrx _ActivityServerPrx;
+
+    //
+    std::string _ConfigServantObj;
+    config::ConfigServantPrx _ConfigServantPrx;
+
+    //日志入库服务
+    std::string _Log2DBServantObj;
+    DaqiGame::Log2DBServantPrx _Log2DBServerPrx;
+
+private:
+    //
+    vector<map<string, string>> mallConfigRaw;
+    //
+    vector<map<string, string>> activityConfigRaw;
+
+private:
+    // ios ---> debug(release)--->url
+    std::map<order::Eum_Channel_Type, std::map<order::Eun_Order_Env, std::string>> _urls;
 };
 
-//单例
-typedef TC_Singleton<OuterFactoryImp, CreateStatic, DefaultLifetime> OuterFactorySingleton;
-
-/////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 #endif
-
 
 
