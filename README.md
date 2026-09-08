@@ -1,6 +1,6 @@
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# 德州扑克俱乐部与赛事平台|德州扑克源码
+# Texas Holdem Poker Source Code|德州扑克俱乐部与赛事平台|德州扑克源码
 
 💡 快速搭建属于你的德州扑克平台  
 💡 快速建立自己的德州撲克系統  
