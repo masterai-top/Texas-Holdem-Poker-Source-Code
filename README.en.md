@@ -1,6 +1,6 @@
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# Web and H5 Texas Holdem Club and Tournament Platform
+# Texas Holdem Poker Source Code
 
 
 🔥 Online Multiplayer System
