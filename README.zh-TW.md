@@ -1,6 +1,6 @@
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# Web、H5 德州撲克俱樂部與賽事平台|德州扑克源码
+# Texas Holdem Poker Source Code|德州撲克俱樂部|德州扑克源码
 
 
 💡 快速搭建屬於你的德州撲克平台
