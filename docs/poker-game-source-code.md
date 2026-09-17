@@ -11,12 +11,12 @@
 This document describes the major components of a multiplayer poker game
 source code project.
 
-The TexasHoldem-Poker-Complete-Solution repository is designed around a
+The Texas-Holdem-Poker-Source-Code repository is designed around a
 Unity client and C++ server architecture.
 
 Main repository:
 
-https://github.com/masterai-top/TexasHoldem-Poker-Complete-Solution
+https://github.com/masterai-top/Texas-Holdem-Poker-Source-Code
 
 ## Core Components
 

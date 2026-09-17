@@ -11,7 +11,7 @@
 Unity provides a flexible environment for building the client side of a
 multiplayer Texas Hold'em Poker game.
 
-The TexasHoldem-Poker-Complete-Solution project uses Unity for the game client
+The Texas-Holdem-Poker-Source-Code project uses Unity for the game client
 and user interface.
 
 ## Unity Client Responsibilities

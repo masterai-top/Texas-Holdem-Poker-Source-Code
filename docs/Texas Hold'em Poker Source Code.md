@@ -3,7 +3,7 @@
 ## Overview
 
 This document introduces the Texas Hold'em Poker source code architecture
-included in the TexasHoldem-Poker-Complete-Solution project.
+included in the Texas-Holdem-Poker-Source-Code project.
 
 本项目是一套面向多人德州扑克游戏开发的完整解决方案，采用 Unity 客户端
 与 C++ 游戏服务器架构，可用于 Texas Hold'em Poker 游戏开发、技术研究
@@ -11,7 +11,7 @@ included in the TexasHoldem-Poker-Complete-Solution project.
 
 Main repository:
 
-https://github.com/masterai-top/TexasHoldem-Poker-Complete-Solution
+https://github.com/masterai-top/Texas-Holdem-Poker-Source-Code
 
 ## What Is Texas Hold'em?
 

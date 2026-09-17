@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://masterai-top.github.io/TexasHoldem-Poker-Complete-Solution/sitemap.xml
+Sitemap: https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/sitemap.xml

@@ -407,3 +407,10 @@ code {
     padding: 52px 0;
   }
 }
+
+/* Keep product screenshots complete and hero text readable. */
+.shot { margin: 0; }
+.shot img { aspect-ratio: auto; height: auto; object-fit: contain; }
+.hero-media { z-index: 0; }
+.hero::before { z-index: 1; pointer-events: none; }
+.hero-inner { z-index: 2; }

@@ -11,7 +11,7 @@
 Multiplayer poker requires real-time synchronization between multiple clients
 and a centralized game server.
 
-The TexasHoldem-Poker-Complete-Solution project is designed for multiplayer
+The Texas-Holdem-Poker-Source-Code project is designed for multiplayer
 Texas Hold'em game scenarios.
 
 ## Multiplayer Architecture
