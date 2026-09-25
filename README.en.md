@@ -64,18 +64,7 @@ The gameplay matrix includes Holdem, Omaha, Short Deck, Pineapple, AOF, SNG, and
 | --- | --- |
 | [![Private poker friend game](Screenshots/好友局.jpg)](Screenshots/好友局.jpg) | [![Real-time poker room](Screenshots/打牌房间.jpg)](Screenshots/打牌房间.jpg) |
 
-### Client and operations dashboard
-
-| Client UI 1 | Client UI 2 |
-| --- | --- |
-| ![Texas Holdem client UI 1](https://private-user-images.githubusercontent.com/90965583/578352167-8f1900e2-93c7-4af1-9228-968feddba9ab.png) | ![Texas Holdem client UI 2](https://private-user-images.githubusercontent.com/90965583/578352189-0519cbf7-8856-4488-8838-374dc8019f5e.png) |
-| ![Texas Holdem client UI 3](https://private-user-images.githubusercontent.com/90965583/578352191-57e9984e-36c3-4d91-abe7-09b1420de6af.png) | ![Texas Holdem client UI 4](https://private-user-images.githubusercontent.com/90965583/578352199-7dc4fb13-7624-40af-8bc0-80d5ae2a750d.png) |
-
-| Operations dashboard 1 | Operations dashboard 2 |
-| --- | --- |
-| ![Poker operations dashboard 1](https://private-user-images.githubusercontent.com/90965583/578352682-862255c7-e740-479d-8ead-ec8373d46c19.png) | ![Poker operations dashboard 2](https://private-user-images.githubusercontent.com/90965583/578352694-9503e359-06f4-424f-8fa0-8caa149e74a9.png) |
-
-These screenshots cover the tournament, player, club, league, friend-room, live-table, and operations workflows. Actual behavior depends on the current code and deployment configuration.
+All screenshots above reference confirmed files in the repository's `Screenshots/` directory. They cover the tournament, player, club, league, friend-room, and live-table workflows. Actual behavior depends on the current code and deployment configuration.
 
 ## Architecture
 

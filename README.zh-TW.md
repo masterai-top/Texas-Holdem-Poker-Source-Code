@@ -65,18 +65,7 @@
 | --- | --- |
 | [![德州撲克好友私人局](Screenshots/好友局.jpg)](Screenshots/好友局.jpg) | [![德州撲克即時打牌房間](Screenshots/打牌房间.jpg)](Screenshots/打牌房间.jpg) |
 
-### 用戶端與營運後台
-
-| 用戶端介面 1 | 用戶端介面 2 |
-| --- | --- |
-| ![德州撲克用戶端產品介面 1](https://private-user-images.githubusercontent.com/90965583/578352167-8f1900e2-93c7-4af1-9228-968feddba9ab.png) | ![德州撲克用戶端產品介面 2](https://private-user-images.githubusercontent.com/90965583/578352189-0519cbf7-8856-4488-8838-374dc8019f5e.png) |
-| ![德州撲克用戶端產品介面 3](https://private-user-images.githubusercontent.com/90965583/578352191-57e9984e-36c3-4d91-abe7-09b1420de6af.png) | ![德州撲克用戶端產品介面 4](https://private-user-images.githubusercontent.com/90965583/578352199-7dc4fb13-7624-40af-8bc0-80d5ae2a750d.png) |
-
-| 營運後台 1 | 營運後台 2 |
-| --- | --- |
-| ![德州撲克營運管理後台 1](https://private-user-images.githubusercontent.com/90965583/578352682-862255c7-e740-479d-8ead-ec8373d46c19.png) | ![德州撲克營運管理後台 2](https://private-user-images.githubusercontent.com/90965583/578352694-9503e359-06f4-424f-8fa0-8caa149e74a9.png) |
-
-上述截圖展示 MTT、個人中心、俱樂部幣、俱樂部與聯盟、好友局、即時牌桌及營運後台。實際功能以目前程式碼及部署設定為準。
+上述截圖均引用儲存庫 `Screenshots/` 目錄中的現有檔案，展示 MTT、個人中心、俱樂部幣、俱樂部與聯盟、好友局及即時牌桌。實際功能以目前程式碼及部署設定為準。
 
 ## 技術架構
 

@@ -99,18 +99,7 @@ Unity / Cocos Creator / Android
 
 好友局用于邀请固定玩家进入私人房间；实时牌桌承担下注、跟注、加注、弃牌、保险和结算等对局流程。
 
-### 客户端与运营后台
-
-| 客户端界面 1 | 客户端界面 2 |
-| --- | --- |
-| ![德州扑克客户端产品界面 1](https://private-user-images.githubusercontent.com/90965583/578352167-8f1900e2-93c7-4af1-9228-968feddba9ab.png) | ![德州扑克客户端产品界面 2](https://private-user-images.githubusercontent.com/90965583/578352189-0519cbf7-8856-4488-8838-374dc8019f5e.png) |
-| ![德州扑克客户端产品界面 3](https://private-user-images.githubusercontent.com/90965583/578352191-57e9984e-36c3-4d91-abe7-09b1420de6af.png) | ![德州扑克客户端产品界面 4](https://private-user-images.githubusercontent.com/90965583/578352199-7dc4fb13-7624-40af-8bc0-80d5ae2a750d.png) |
-
-| 运营后台 1 | 运营后台 2 |
-| --- | --- |
-| ![德州扑克运营管理后台 1](https://private-user-images.githubusercontent.com/90965583/578352682-862255c7-e740-479d-8ead-ec8373d46c19.png) | ![德州扑克运营管理后台 2](https://private-user-images.githubusercontent.com/90965583/578352694-9503e359-06f4-424f-8fa0-8caa149e74a9.png) |
-
-运营后台覆盖玩家管理、报表统计、局分调整和风险控制。截图用于展示产品范围，实际功能以当前代码和部署配置为准。
+以上截图均引用仓库 `Screenshots/` 目录中的现有文件，用于展示已经能够确认的产品界面。实际功能以当前代码和部署配置为准。
 
 ## 使用与评估
 
