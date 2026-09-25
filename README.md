@@ -1,160 +1,145 @@
+# 德州扑克源码 / 德州撲克源碼 / Texas Holdem Poker Source Code
+
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# Texas Holdem Poker Source Code|德州扑克俱乐部与赛事平台|德州扑克源码
+面向多人实时对战的德州扑克完整解决方案。项目包含 C++ 游戏服务端、Unity / Cocos Creator 客户端代码、MySQL 与 Redis 数据层，以及扑克大厅、私人桌、俱乐部、联盟、好友局、SNG 和 MTT 锦标赛等业务模块。
 
-💡 快速搭建属于你的德州扑克平台  
-💡 快速建立自己的德州撲克系統  
+> 本仓库用于软件开发、技术评估与合法娱乐项目。部署或运营前，请遵守所在国家或地区关于网络游戏、数据保护、支付和年龄限制的法律法规。
 
+## 项目概览
 
-🔥 Online Multiplayer System  
-🔥 Club + Agent System  
-🔥 Real-Time Gameplay  
+这套德州源码覆盖从客户端交互、实时通信、牌桌逻辑到运营后台的主要链路，适合进行二次开发、架构研究和私有化部署。
 
+| 层级 | 主要内容 |
+| --- | --- |
+| 客户端 | Unity / Cocos Creator、Android SDK、大厅、俱乐部与牌桌界面 |
+| 游戏服务 | C++、实时牌桌逻辑、房间状态与赛事流程 |
+| 通信 | Tars、Protocol Buffers 与项目私有协议 |
+| 数据 | MySQL、Redis、玩家资料、战绩与排行榜 |
+| 玩法 | 标准德州、奥马哈、短牌、大菠萝、AOF、SNG、MTT |
+| 运营 | 玩家管理、俱乐部、联盟、报表、风险控制与局分管理 |
 
----
+## 核心功能
 
+- 多人实时德州扑克对局与在线房间管理
+- 好友局、私人桌、俱乐部和联盟体系
+- 标准德州、奥马哈、短牌、大菠萝与 AOF
+- SNG 坐满即玩与 MTT 多桌锦标赛流程
+- Buy-in、Straddle、保险、战绩和排行榜
+- 玩家管理、报表统计和运营后台
+- Android 客户端接入与多语言扩展基础
 
-## 🚀 Quick Overview | 快速介绍 | 快速介紹
+## 俱乐部、联盟与私人局玩法
 
+俱乐部体系不是单一入口，而是贯穿建房、成员、牌局和战绩的完整业务流程：
 
-### 🇺🇸 English
-Build your own Texas Holdem Poker platform with a complete multiplayer system, including club and agent features.  
-Ready for development, customization, and deployment.
+- **创建与加入俱乐部**：玩家可以创建俱乐部、申请加入俱乐部，并由管理者维护成员与权限。
+- **俱乐部牌局**：支持俱乐部内部开桌、好友约局和私人桌，适合固定玩家组织牌局。
+- **联盟体系**：多个俱乐部可以加入联盟，统一组织牌局和联盟赛事。
+- **俱乐部币与局分**：包含俱乐部币展示、局分管理及后台调整流程。
+- **牌桌扩展**：支持自动 Buy-in、Straddle、保险等牌桌配置。
+- **战绩与统计**：保存牌局记录、玩家战绩、排行榜和运营报表。
+- **赛事玩法**：支持 SNG 坐满即玩以及 MTT 多桌锦标赛流程。
 
+玩法矩阵包括标准德州、奥马哈、短牌、大菠萝、AOF、SNG 和 MTT。最终可用玩法以当前代码分支、数据库配置及部署版本为准。
 
-### 🇨🇳 简体中文
-快速搭建属于自己的德州扑克平台，支持多人对战、俱乐部系统和代理体系。  
-适用于开发、定制及部署。
+## 技术架构
 
+```text
+Unity / Cocos Creator / Android
+              |
+      Tars / Protobuf / TCP
+              |
+       C++ Game Services
+        /             \
+     MySQL           Redis
+```
 
-### 🇹🇼 繁體中文
-快速建立自己的德州撲克平台，支援多人對戰、俱樂部與代理系統。  
-適用於開發與客製化部署。
+更详细的模块边界、目录映射和评估步骤见 [技术架构说明](docs/ARCHITECTURE.md)。
 
+## 仓库内容
 
----
+- `Android SDK/client/`：Android 客户端相关内容
+- `Assets/`、`Screenshots/`：界面资源与功能截图
+- `core/`：核心模块
+- `docs/`：项目与架构文档
+- `*.cpp`、`*.h`：C++ 服务端实现
+- `*.proto.bytes`、`*.tars`：消息与服务接口定义
+- `*.ts`：客户端 TypeScript 代码
 
+## 产品截图与功能介绍
 
-## ✨ Key Features | 核心功能 | 核心功能
+### MTT 赛事
 
+[![德州扑克源码 MTT 多桌锦标赛界面](Screenshots/MTT赛事.jpg)](Screenshots/MTT赛事.jpg)
 
-- 🧑‍🤝‍🧑 Multiplayer Poker（多人对战）  
-- 🏆 Club System（俱乐部系统）  
-- 🧩 Agent System（代理体系）  
-- ⚡ Real-time Gameplay（实时对局）  
-- 🌐 Online Server（在线服务器）  
-- 🔧 Customizable（可二次开发）  
+展示 MTT 多桌锦标赛入口和赛事信息，用于组织多人淘汰制锦标赛。
 
+### 个人中心与俱乐部币
 
----
+| 个人中心 | 俱乐部币 |
+| --- | --- |
+| [![德州扑克个人中心](Screenshots/个人中心.jpg)](Screenshots/个人中心.jpg) | [![德州扑克俱乐部币](Screenshots/俱乐部币.jpg)](Screenshots/俱乐部币.jpg) |
 
+个人中心集中展示玩家资料与账户信息；俱乐部币用于俱乐部内部的业务展示和管理流程。
 
-## ⚡ Quick Start | 快速开始 | 快速開始
+### 创建俱乐部与加入联盟
 
+| 创建俱乐部 | 加入联盟 |
+| --- | --- |
+| [![创建德州扑克俱乐部](Screenshots/创建俱乐部.jpg)](Screenshots/创建俱乐部.jpg) | [![德州扑克俱乐部加入联盟](Screenshots/加入联盟.jpg)](Screenshots/加入联盟.jpg) |
 
-> **线上稳定运营多年 | 支持联盟/俱乐部/私人局 | 媲美hhpoker, wpk | 源码+美术+运维脚本**
+俱乐部管理者可以创建俱乐部、维护成员，并加入联盟组织跨俱乐部牌局和赛事。
 
+### 好友局与实时牌桌
 
-## 🎮 Demo | 演示 | 演示
+| 好友局 | 打牌房间 |
+| --- | --- |
+| [![德州扑克好友私人局](Screenshots/好友局.jpg)](Screenshots/好友局.jpg) | [![德州扑克实时打牌房间](Screenshots/打牌房间.jpg)](Screenshots/打牌房间.jpg) |
 
+好友局用于邀请固定玩家进入私人房间；实时牌桌承担下注、跟注、加注、弃牌、保险和结算等对局流程。
 
-See real gameplay below 👇  
+### 客户端与运营后台
 
+| 客户端界面 1 | 客户端界面 2 |
+| --- | --- |
+| ![德州扑克客户端产品界面 1](https://private-user-images.githubusercontent.com/90965583/578352167-8f1900e2-93c7-4af1-9228-968feddba9ab.png) | ![德州扑克客户端产品界面 2](https://private-user-images.githubusercontent.com/90965583/578352189-0519cbf7-8856-4488-8838-374dc8019f5e.png) |
+| ![德州扑克客户端产品界面 3](https://private-user-images.githubusercontent.com/90965583/578352191-57e9984e-36c3-4d91-abe7-09b1420de6af.png) | ![德州扑克客户端产品界面 4](https://private-user-images.githubusercontent.com/90965583/578352199-7dc4fb13-7624-40af-8bc0-80d5ae2a750d.png) |
 
-![MTT赛事](Screenshots/MTT赛事.jpg)  
-**MTT赛事界面 | MTT Tournament**
+| 运营后台 1 | 运营后台 2 |
+| --- | --- |
+| ![德州扑克运营管理后台 1](https://private-user-images.githubusercontent.com/90965583/578352682-862255c7-e740-479d-8ead-ec8373d46c19.png) | ![德州扑克运营管理后台 2](https://private-user-images.githubusercontent.com/90965583/578352694-9503e359-06f4-424f-8fa0-8caa149e74a9.png) |
 
+运营后台覆盖玩家管理、报表统计、局分调整和风险控制。截图用于展示产品范围，实际功能以当前代码和部署配置为准。
 
-![个人中心](Screenshots/个人中心.jpg)  
-**个人中心界面 | Personal Center**
+## 使用与评估
 
+1. 先阅读 [技术架构说明](docs/ARCHITECTURE.md)，确认服务端、客户端和数据组件。
+2. 检查项目配置、数据库脚本及外部依赖是否适合目标环境。
+3. 在隔离的开发环境中编译并验证单个服务，再进行联调。
+4. 上线前完成安全审计、压力测试、日志脱敏和合规检查。
 
-![俱乐部币](Screenshots/俱乐部币.jpg)  
-**俱乐部币界面 | Club Currency**
+不同分支或交付版本的依赖可能不同，请以仓库内实际构建文件和部署文档为准。
 
+## 适用场景
 
-![创建俱乐部](Screenshots/创建俱乐部.jpg)  
-**创建俱乐部界面 | Create Club**
+- 德州扑克源码技术评估与架构学习
+- 德州撲克源碼繁体中文项目检索与开发参考
+- C++ 多人游戏服务器研究
+- Unity / Cocos Creator 扑克客户端二次开发
+- 俱乐部、私人桌、SNG 与 MTT 赛事系统原型
 
+## 相关文档
 
-![加入联盟](Screenshots/加入联盟.jpg)  
-**加入联盟界面 | Join Alliance**
-![好友局](Screenshots/好友局.jpg)  
-**好友局界面 | Friends Room**
+- [繁體中文說明](README.zh-TW.md)
+- [English documentation](README.en.md)
+- [技术架构说明](docs/ARCHITECTURE.md)
 
+## 联系
 
-![打牌房间](Screenshots/打牌房间.jpg)  
-**打牌房间界面 | Gameplay Room**
-<img width="1058" height="2204" alt="04" src="https://github.com/user-attachments/assets/7dc4fb13-7624-40af-8bc0-80d5ae2a750d" />
-<img width="1058" height="2204" alt="03" src="https://github.com/user-attachments/assets/57e9984e-36c3-4d91-abe7-09b1420de6af" />
-<img width="1058" height="2204" alt="02" src="https://github.com/user-attachments/assets/0519cbf7-8856-4488-8838-374dc8019f5e" />
-<img width="1058" height="2204" alt="01" src="https://github.com/user-attachments/assets/8f1900e2-93c7-4af1-9228-968feddba9ab" />
-<img width="716" height="551" alt="后台002" src="https://github.com/user-attachments/assets/9503e359-06f4-424f-8fa0-8caa149e74a9" />
-<img width="652" height="514" alt="后台001" src="https://github.com/user-attachments/assets/862255c7-e740-479d-8ead-ec8373d46c19" />
-🚀 Perfect for building poker apps, platforms, or learning real-time game development
+- Telegram: `@xuzongbin001`
+- Email: `masterai918@gmail.com`
 
+## License
 
-### 🔥 为什么选择这套源码？
-
-
-这是一套 **真正上线运营多年、久经考验** 的德州扑克全套解决方案。不同于市面上拼凑的Demo，我们的代码持续迭代，服务稳定，已被多个俱乐部用于实际运营。
-
-
-### ✨ 核心卖点
-
-
--   **完整玩法矩阵**：德州、奥马哈、短牌、大菠萝、MTT、SNG、AOF，**联盟模式**全支持。
--   **俱乐部/私人局**：完整的约局、俱乐部管理、保险、战绩统计功能。
--   **高稳定性**：C++ 高性能服务端，支持千人同时在线，无压力。
--   **优质资源**：提供全套高清美术资源、UI源文件、音效。
--   **同类对比**：在功能、稳定性和扩展性上，**全面优于 hhpoker 和 wpk**。
-
-
-### 🎯 功能清单
-
-
-| 模块 | 功能说明 |
-| :--- | :--- |
-| **大厅系统** | 多玩法入口、公告、排行榜、商城 |
-| **约局/俱乐部** | 好友约局、俱乐部创建/管理、联盟赛事 |
-| **牌桌逻辑** | 标准/短牌/奥马哈，自动Buy-in，Straddle，保险 |
-| **赛事系统** | MTT（多桌锦标赛）、SNG（坐满即玩） |
-| **后台管理** | 玩家管理、报表统计、局分调整、风险控制 |
-
-
-### 🚀 技术架构
-
-
--   **服务端**：C++ (高效稳定)
--   **客户端**：Cocos Creator / Unity (可演示)
--   **通信**：Tars / 私有协议
--   **数据**：MySQL + Redis
-
-
-### 📦 交付内容
-
-
--   全份服务端源码 + 客户端源码
--   完整的数据库脚本
--   高清美术资源和UI源文件
--   部署运维脚本和文档
-
-
-### 💰 联系
-
-
-
--   **联系方式**：📱 **Telegram：@xuzongbin001**
--   **备用邮箱**：📧 **masterai918@gmail.com**
-
-
-
-
-
-
-### ⭐ 如何让我们看到你？
-
-
-1.  **Star** 这个仓库，方便你随时找到。
-2.  **Fork** 到你的账号，作为技术评估的起点。
-3.  **联系 TG @xuzongbin001**
+请查看 [LICENSE](LICENSE)。使用代码、图片、音效或其他资源前，请确认相应授权范围。

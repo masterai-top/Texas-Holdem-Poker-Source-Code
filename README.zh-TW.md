@@ -1,172 +1,135 @@
+# 德州撲克源碼 / 德州源碼 / Texas Holdem Poker Source Code
+
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# Texas Holdem Poker Source Code|德州撲克俱樂部|德州扑克源码
+面向多人即時對戰的德州撲克完整解決方案。專案包含 C++ 遊戲伺服器、Unity / Cocos Creator 用戶端程式碼、MySQL 與 Redis 資料層，以及撲克大廳、私人桌、俱樂部、聯盟、好友局、SNG 和 MTT 錦標賽等業務模組。
 
+> 本儲存庫用於軟體開發、技術評估與合法娛樂專案。部署或營運前，請遵守所在地關於網路遊戲、資料保護、支付及年齡限制的法規。
 
-💡 快速搭建屬於你的德州撲克平台
+## 專案概覽
 
-💡 快速建立自己的德州撲克系統
+這套德州撲克源碼涵蓋用戶端互動、即時通訊、牌桌邏輯與營運後台的主要流程，適合二次開發、架構研究及私有化部署。
 
+| 層級 | 主要內容 |
+| --- | --- |
+| 用戶端 | Unity / Cocos Creator、Android SDK、大廳、俱樂部與牌桌介面 |
+| 遊戲服務 | C++、即時牌桌邏輯、房間狀態與賽事流程 |
+| 通訊 | Tars、Protocol Buffers 與專案私有協議 |
+| 資料 | MySQL、Redis、玩家資料、戰績與排行榜 |
+| 玩法 | 標準德州、奧馬哈、短牌、大菠蘿、AOF、SNG、MTT |
+| 營運 | 玩家管理、俱樂部、聯盟、報表、風險控制與局分管理 |
 
-🔥 Online Multiplayer System
+## 核心功能
 
-🔥 Club + Agent System
+- 多人即時德州撲克對局與線上房間管理
+- 好友局、私人桌、俱樂部與聯盟系統
+- 標準德州、奧馬哈、短牌、大菠蘿與 AOF
+- SNG 坐滿即玩及 MTT 多桌錦標賽流程
+- Buy-in、Straddle、保險、戰績與排行榜
+- 玩家管理、報表統計與營運後台
+- Android 用戶端接入及多語系擴充基礎
 
-🔥 Real-Time Gameplay
+## 俱樂部、聯盟與私人局玩法
 
+- **建立與加入俱樂部**：玩家可以建立俱樂部、申請加入，管理者可維護成員及權限。
+- **俱樂部牌局**：支援俱樂部內開桌、好友約局與私人桌。
+- **聯盟系統**：多個俱樂部可加入聯盟，共同組織牌局及聯盟賽事。
+- **俱樂部幣與局分**：包含俱樂部幣顯示、局分管理及後台調整流程。
+- **牌桌擴充**：支援自動 Buy-in、Straddle、保險等牌桌設定。
+- **戰績與統計**：保存牌局記錄、玩家戰績、排行榜及營運報表。
+- **賽事玩法**：支援 SNG 坐滿即玩及 MTT 多桌錦標賽流程。
 
----
+玩法矩陣包括標準德州、奧馬哈、短牌、大菠蘿、AOF、SNG 及 MTT。最終可用範圍以目前程式碼分支、資料庫設定及部署版本為準。
 
+## 產品截圖與功能介紹
 
-## 🚀 Quick Overview | 快速介紹 | 快速介紹
+### MTT 賽事
 
+[![德州撲克源碼 MTT 多桌錦標賽介面](Screenshots/MTT赛事.jpg)](Screenshots/MTT赛事.jpg)
 
+### 個人中心與俱樂部幣
 
+| 個人中心 | 俱樂部幣 |
+| --- | --- |
+| [![德州撲克個人中心](Screenshots/个人中心.jpg)](Screenshots/个人中心.jpg) | [![德州撲克俱樂部幣](Screenshots/俱乐部币.jpg)](Screenshots/俱乐部币.jpg) |
 
-快速建立自己的德州撲克平台，支援多人對戰、俱樂部與代理商系統。
+### 建立俱樂部與加入聯盟
 
-適用於開發與客製化部署。
+| 建立俱樂部 | 加入聯盟 |
+| --- | --- |
+| [![建立德州撲克俱樂部](Screenshots/创建俱乐部.jpg)](Screenshots/创建俱乐部.jpg) | [![德州撲克俱樂部加入聯盟](Screenshots/加入联盟.jpg)](Screenshots/加入联盟.jpg) |
 
+### 好友局與即時牌桌
 
----
+| 好友局 | 打牌房間 |
+| --- | --- |
+| [![德州撲克好友私人局](Screenshots/好友局.jpg)](Screenshots/好友局.jpg) | [![德州撲克即時打牌房間](Screenshots/打牌房间.jpg)](Screenshots/打牌房间.jpg) |
 
+### 用戶端與營運後台
 
-## ✨ Key Features | 核心功能 | 核心功能
+| 用戶端介面 1 | 用戶端介面 2 |
+| --- | --- |
+| ![德州撲克用戶端產品介面 1](https://private-user-images.githubusercontent.com/90965583/578352167-8f1900e2-93c7-4af1-9228-968feddba9ab.png) | ![德州撲克用戶端產品介面 2](https://private-user-images.githubusercontent.com/90965583/578352189-0519cbf7-8856-4488-8838-374dc8019f5e.png) |
+| ![德州撲克用戶端產品介面 3](https://private-user-images.githubusercontent.com/90965583/578352191-57e9984e-36c3-4d91-abe7-09b1420de6af.png) | ![德州撲克用戶端產品介面 4](https://private-user-images.githubusercontent.com/90965583/578352199-7dc4fb13-7624-40af-8bc0-80d5ae2a750d.png) |
 
+| 營運後台 1 | 營運後台 2 |
+| --- | --- |
+| ![德州撲克營運管理後台 1](https://private-user-images.githubusercontent.com/90965583/578352682-862255c7-e740-479d-8ead-ec8373d46c19.png) | ![德州撲克營運管理後台 2](https://private-user-images.githubusercontent.com/90965583/578352694-9503e359-06f4-424f-8fa0-8caa149e74a9.png) |
 
-- 🧑‍🤝‍🧑 Multiplayer Poker（多人對戰）
+上述截圖展示 MTT、個人中心、俱樂部幣、俱樂部與聯盟、好友局、即時牌桌及營運後台。實際功能以目前程式碼及部署設定為準。
 
-- 🏆 Club System（俱樂部系統）
+## 技術架構
 
-- 🧩 Agent System（代理體系）
+```text
+Unity / Cocos Creator / Android
+              |
+      Tars / Protobuf / TCP
+              |
+       C++ Game Services
+        /             \
+     MySQL           Redis
+```
 
-- ⚡ Real-time Gameplay（即時對局）
+模組邊界、目錄對應及評估步驟請參閱 [技術架構說明](docs/ARCHITECTURE.md)。
 
-- 🌐 Online Server（線上伺服器）
+## 儲存庫內容
 
-- 🔧 Customizable（可二次開發）
+- `Android SDK/client/`：Android 用戶端相關內容
+- `Assets/`、`Screenshots/`：介面資源與功能截圖
+- `core/`：核心模組
+- `docs/`：專案與架構文件
+- `*.cpp`、`*.h`：C++ 伺服器實作
+- `*.proto.bytes`、`*.tars`：訊息與服務介面定義
+- `*.ts`：用戶端 TypeScript 程式碼
 
+## 使用與評估
 
----
+1. 先閱讀 [技術架構說明](docs/ARCHITECTURE.md)，確認伺服器、用戶端與資料元件。
+2. 檢查專案設定、資料庫腳本及外部相依套件是否適合目標環境。
+3. 在隔離的開發環境中編譯及驗證個別服務，再進行整合測試。
+4. 上線前完成安全審查、壓力測試、日誌去識別化與合規檢查。
 
+不同分支或交付版本的相依套件可能不同，請以儲存庫內實際建置檔案及部署文件為準。
 
-## ⚡ Quick Start |  快速開始
+## 適用情境
 
+- 德州撲克源碼技術評估與架構學習
+- 德州源碼繁體中文搜尋與開發參考
+- C++ 多人遊戲伺服器研究
+- Unity / Cocos Creator 撲克用戶端二次開發
+- 俱樂部、私人桌、SNG 與 MTT 賽事系統原型
 
-> **線上穩定營運多年 | 支援聯盟/俱樂部/私人局 | 媲美hhpoker, wpk | 原始碼+美術+維運腳本**
+## 相關文件
 
+- [简体中文说明](README.md)
+- [English documentation](README.en.md)
+- [技術架構說明](docs/ARCHITECTURE.md)
 
-## 🎮 Demo | 演示 
+## 聯絡方式
 
+- Telegram: `@xuzongbin001`
+- Email: `masterai918@gmail.com`
 
-See real gameplay below 👇
-![MTT赛事](Screenshots/MTT赛事.jpg)  
-**MTT賽事介面 | MTT Tournament**
-![个人中心](Screenshots/个人中心.jpg)  
-**個人中心介面 | Personal Center**
-![俱乐部币](Screenshots/俱乐部币.jpg)  
-**俱樂部幣界面 | Club Currency**
-![创建俱乐部](Screenshots/创建俱乐部.jpg)  
-**建立俱樂部介面 | Create Club**
-![加入联盟](Screenshots/加入联盟.jpg)  
-**加入聯盟介面 | Join Alliance**
-![好友局](Screenshots/好友局.jpg)  
-**好友局介面 | Friends Room**
-![打牌房间](Screenshots/打牌房间.jpg)  
-**打牌房間介面 | Gameplay Room**
-<img width="1058" height="2204" alt="04" src="https://github.com/user-attachments/assets/7dc4fb13-7624-40af-8bc0-80d5ae2a750d" />
-<img width="1058" height="2204" alt="03" src="https://github.com/user-attachments/assets/57e9984e-36c3-4d91-abe7-09b1420de6af" />
-<img width="1058" height="2204" alt="02" src="https://github.com/user-attachments/assets/0519cbf7-8856-4488-8838-374dc8019f5e" />
-<img width="1058" height="2204" alt="01" src="https://github.com/user-attachments/assets/8f1900e2-93c7-4af1-9228-968feddba9ab" />
-<img width="716" height="551" alt="后台002" src="https://github.com/user-attachments/assets/9503e359-06f4-424f-8fa0-8caa149e74a9" />
-<img width="652" height="514" alt="后台001" src="https://github.com/user-attachments/assets/862255c7-e740-479d-8ead-ec8373d46c19" />
-🚀 Perfect for building poker apps, platforms, or learning real-time game development
+## 授權
 
-
-
-
-### 🔥 為什麼要選擇這套原始碼？
-
-
-這是一套 **真正上線運營多年、久經考驗** 的德州撲克全套解決方案。
-不同於市面上拼湊的Demo，我們的程式碼持續迭代，服務穩定，已被多個俱樂部用於實際運作。
-
-
-### ✨ 核心賣點
-
-
-- **完整玩法矩陣**：德州、奧馬哈、短牌、大鳳梨、MTT、SNG、AOF，**聯盟模式**全支援。
-
-- **俱樂部/私人局**：完整的約局、俱樂部管理、保險、戰績統計功能。
-
-- **高穩定性**：C++ 高效能服務端，支援千人同時在線，無壓力。
-
-- **優質資源**：提供全套高清美術資源、UI原始檔、音效。
-
-- **同類對比**：在功能、穩定性和擴展性上，**全面優於 hhpoker 和 wpk**。
-
-
-### 🎯 功能清單
-
-
-| 模組 | 功能說明 |
-
-| :--- | :--- |
-
-| **大廳系統** | 多玩法入口、公告、排行榜、商城 |
-
-| **約局/俱樂部** | 好友約局、俱樂部創建/管理、聯盟賽事 |
-
-| **牌桌邏輯** | 標準/短牌/奧馬哈，自動Buy-in，Straddle，保險 |
-
-| **賽事系統** | MTT（多桌錦標賽）、SNG（坐滿即玩） |
-
-| **後台管理** | 玩家管理、報表統計、局分調整、風險控制 |
-
-
-### 🚀 技術架構
-
-
-- **服務端**：C++ (高效率穩定)
-
-- **客戶端**：Cocos Creator / Unity (可演示)
-
-- **通訊**：Tars / 私有協議
-
-- **資料**：MySQL + Redis
-
-
-### 📦 交付內容
-
-
-- 全份服務端源碼 + 客戶端源碼
-
-- 完整的資料庫腳本
-
-- 高清美術資源與UI源文件
-
-- 部署維運腳本和文檔
-
-
-### 💰 合作
-
-
-
-- **聯絡方式**：📱 **Telegram：@xuzongbin001**
-
-- **備用信箱**：📧 **masterai918@gmail.com**
-
-
-
-
----
-
-
-### ⭐ 如何讓我們看見你？
-
-
-1. **Star** 這個倉庫，方便你隨時找到。
-
-2. **Fork** 到你的帳號，作為技術評估的起點。
-
-3. **聯絡 TG @xuzongbin001**
+請查看 [LICENSE](LICENSE)。使用程式碼、圖片、音效或其他資源前，請確認相應授權範圍。
