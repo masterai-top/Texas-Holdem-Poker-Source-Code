@@ -4,6 +4,8 @@
 
 面向多人实时对战的德州扑克完整解决方案。项目包含 C++ 游戏服务端、Unity / Cocos Creator 客户端代码、MySQL 与 Redis 数据层，以及扑克大厅、私人桌、俱乐部、联盟、好友局、SNG 和 MTT 锦标赛等业务模块。
 
+专题页面：[德州扑克源码](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-cn/texas-holdem-source-code.html) · [德州俱乐部源码](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-cn/poker-club-source-code.html) · [德州私人局源码](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-cn/private-poker-game-source-code.html)
+
 > 本仓库用于软件开发、技术评估与合法娱乐项目。部署或运营前，请遵守所在国家或地区关于网络游戏、数据保护、支付和年龄限制的法律法规。
 
 ## 项目概览

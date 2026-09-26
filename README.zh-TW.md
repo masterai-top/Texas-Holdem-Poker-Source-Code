@@ -4,6 +4,8 @@
 
 面向多人即時對戰的德州撲克完整解決方案。專案包含 C++ 遊戲伺服器、Unity / Cocos Creator 用戶端程式碼、MySQL 與 Redis 資料層，以及撲克大廳、私人桌、俱樂部、聯盟、好友局、SNG 和 MTT 錦標賽等業務模組。
 
+專題頁面：[德州撲克源碼](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-tw/texas-holdem-source-code.html) · [德州俱樂部源碼](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-tw/poker-club-source-code.html) · [德州私人局源碼](https://masterai-top.github.io/Texas-Holdem-Poker-Source-Code/zh-tw/private-poker-game-source-code.html)
+
 > 本儲存庫用於軟體開發、技術評估與合法娛樂專案。部署或營運前，請遵守所在地關於網路遊戲、資料保護、支付及年齡限制的法規。
 
 ## 專案概覽
